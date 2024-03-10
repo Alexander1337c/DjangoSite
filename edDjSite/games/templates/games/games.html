@@ -6,20 +6,6 @@
     {% show_categories cat_selected %}
 </div>
 <div class="section-games">
-    {% for game in games %}
-    <div class="game">
-        <div class="game-img">
-            {% if game.photo %}
-            <img src="{{game.photo.url}}" alt="{{game.title}}">
-            {% endif %}
-        </div>
-        <div class="game-body">
-            <span>Опубликовано: {{game.time_create|date:'d-m-Y H:i:s'}}</span>
-            <p class="game-name">{{game.title}}</p>
-            <p class="game-descr">{{game.descr | truncatechars:250}}</p>
-        </div>
-        <a class="btn-form game" href="{% url 'get_game' id=game.id%}">Смотреть</a>
-    </div>
-    {% endfor %}
+    {% show_games cat_selected %}
 </div>
 {% endblock %}

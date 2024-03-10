@@ -1,0 +1,16 @@
+{% for game in games %}
+<div class="game">
+    <div class="game-img">
+        {% if game.photo %}
+        <img src="{{game.photo.url}}" alt="{{game.title}}">
+        {% endif %}
+    </div>
+    <div class="game-body">
+        <span>Опубликовано: {{game.time_create|date:'d-m-Y H:i:s'}}</span>
+        <span>{{game.cat}}</span>
+        <p class="game-name">{{game.title}}</p>
+        <p class="game-descr">{{game.descr | truncatechars:250}}</p>
+    </div>
+    <a class="btn-form game" href="{{ game.get_absolute_url }}">Смотреть</a>
+</div>
+{% endfor %}

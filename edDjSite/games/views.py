@@ -18,29 +18,20 @@ def index(request):
 
 
 def games(request):
-    games = Games.objects.all()
     context = {
         'title': 'Все игры',
         'menu': menu,
-        'games': games,
         'cat_selected': 1
     }
     return render(request, 'games/games.html', context=context)
 
 
-def get_cat(request, cat):
-    if int(cat) == 1:
-        games = Games.objects.all()
-    elif not Games.objects.filter(cat_id=cat):
-        raise Http404()
-    else:
-        games = Games.objects.filter(cat_id=cat)
-    category = Category.objects.filter(id=cat).first()
+def get_cat(request, category_slug):
+    category = Category.objects.filter(slug=category_slug).first()
     context = {
         'title': category,
         'menu': menu,
-        'games': games,
-        'cat_selected': category.id
+        'cat_selected': category.id,
     }
     return render(request, 'games/games.html', context=context)
 
@@ -62,11 +53,11 @@ def add_game(request):
     return render(request, 'games/add_game.html', context=context)
 
 
-def get_game(request, id):
+def get_game(request, game_slug):
     context = {
         'title': 'Игра ',
         'menu': menu,
-        'game': Games.objects.filter(id=id)
+        'game': Games.objects.filter(slug=game_slug)
     }
 
     return render(request, 'games/game.html', context=context)
