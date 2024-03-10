@@ -1,0 +1,5 @@
+{% for cat in ctg %}
+<a class="cat-button {% if cat.id == cat_selected %}active {% endif %}" href="{% url 'get_cat' cat=cat.id%}">
+    {{cat.name}}
+</a>
+{% endfor %}

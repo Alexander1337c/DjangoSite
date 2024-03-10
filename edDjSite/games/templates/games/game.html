@@ -1,0 +1,17 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+{% for g in game %}
+<h2 class="game-title">{{g.title}}</h2>
+<div class="game-item">
+    <div class="game-img">
+        <img src="{{g.photo.url}}" alt="{{g.title}}">
+    </div>
+    <div class="game-body-item">
+        <p class="game-date">{{g.time_create}}</p>
+        <p class="game-descr-item">{{g.descr}}</p>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

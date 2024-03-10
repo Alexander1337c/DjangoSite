@@ -1,0 +1,10 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+
+<h1>INDEX</h1>
+{% for item in items %}
+<p>{{item.title}}</p>
+<p>{{item.descr}}</p>
+{% endfor %}
+{% endblock %}

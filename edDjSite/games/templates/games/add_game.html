@@ -1,0 +1,24 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+
+<div class="add_game">
+    <form class="post-form" enctype="multipart/form-data" action="{%url 'add_game'%}" method="POST">
+        {% csrf_token %}
+        <label for="cat_name">Жанр</label>
+        <select name="select" id="cat_name">
+            {% for cat in cats %}
+            <option value="{{cat.id}}">{{cat.name}}</option>
+            {% endfor %}
+        </select>
+        <label for="name">Название игры</label>
+        <input id="name" name="name" type="text" placeholder="Название игры" required>
+        <label for="descr">Описание</label>
+        <textarea id="descr" name="descr" rows="8" placeholder="Описание" required></textarea>
+        <input id="img" name="img" type="file" placeholder="Фото" required>
+        <input class="btn-form" type="submit" value="Отправить">
+    </form>
+
+</div>
+
+{% endblock %}

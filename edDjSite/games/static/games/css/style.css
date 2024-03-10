@@ -1,0 +1,210 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px; */
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font-size setting */
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  color: #555;
+}
+
+.header {
+  padding: 0 3.2rem;
+  background-color: rgb(226, 255, 255);
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+.logo img {
+  height: 6rem;
+}
+
+.main-menu-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+.main-menu.item {
+  display: flex;
+  gap: 2rem;
+}
+.main-menu.item .item {
+  color: #3d3d3d;
+  font-size: 1.8rem;
+  border: 1px solid black;
+  padding: 0.4rem 1.2rem;
+}
+.main-menu.item .item.active {
+  background-color: red;
+  color: white;
+  border: 1px solid rgb(238, 233, 233);
+  font-size: 2rem;
+}
+.main-menu.register a {
+  color: green;
+  font-size: 1.6rem;
+  border: 1px solid green;
+  padding: 0.4rem 1.2rem;
+}
+.container {
+  max-width: 120rem;
+  padding: 0 3.2rem;
+  margin: 0 auto;
+}
+.section-games {
+  margin-top: 3rem;
+  display: grid;
+  column-gap: 6.4rem;
+  row-gap: 4.6rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  border-radius: 11px;
+  overflow: hidden;
+}
+.game-img img {
+  max-width: 100%;
+}
+
+.game-body {
+  padding: 1.2rem 1rem;
+}
+.game-body span {
+  font-size: 1.2rem;
+  color: #6b6b6b;
+}
+.game-name {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+}
+.game-descr {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+}
+.cat-games {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4rem;
+  margin: 3rem 0 3rem;
+}
+
+.cat-button {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #3d3d3d;
+  border: 1px solid #555;
+  padding: 1rem;
+  border-radius: 6px;
+}
+.active {
+  background-color: rgb(51, 184, 11);
+  color: white;
+  border: 1px solid rgb(238, 233, 233);
+  font-size: 1.6rem;
+}
+.add_game {
+  border-radius: 1.1rem;
+  margin: 3rem auto;
+  max-width: 80rem;
+  padding: 6rem 3rem;
+  background-color: rgb(203, 255, 238);
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.8rem;
+}
+.post-form textarea {
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  width: inherit;
+}
+
+.post-form label {
+  margin: 1rem 0.3rem 0.3rem;
+}
+.post-form input {
+  padding: 1rem 0.5rem;
+  margin-bottom: 1rem;
+}
+.btn-form {
+  background: none;
+  font-size: 1.6rem;
+  border: 1px solid green;
+  padding: 0.4rem 1.2rem;
+  cursor: pointer;
+  color: green;
+}
+#cat_name {
+  width: 13rem;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+.btn-form.game {
+  text-align: center;
+  padding: 1.4rem;
+  transition: all 0.3s;
+}
+
+.btn-form.game:hover {
+  background-color: green;
+  color: white;
+  font-weight: 400;
+}
+.game-title {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 2.4rem;
+}
+.game-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 7rem 3rem;
+  gap: 3rem;
+  background-color: color(a98-rgb 0.92 1 1);
+  border-radius: 15px;
+}
+
+.game-body-item {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.game-date {
+  text-align: end;
+  font-size: 1.2rem;
+}
+.game-descr-item {
+  margin-top: 3rem;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+}
