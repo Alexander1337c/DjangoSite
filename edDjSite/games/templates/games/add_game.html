@@ -2,23 +2,19 @@
 
 {% block content %}
 
+<div class="title">
+    <h2>{{title}}</h2>
+</div>
 <div class="add_game">
     <form class="post-form" enctype="multipart/form-data" action="{%url 'add_game'%}" method="POST">
         {% csrf_token %}
-        <label for="cat_name">Жанр</label>
-        <select name="select" id="cat_name">
-            {% for cat in cats %}
-            <option value="{{cat.id}}">{{cat.name}}</option>
-            {% endfor %}
-        </select>
-        <label for="name">Название игры</label>
-        <input id="name" name="name" type="text" placeholder="Название игры" required>
-        <label for="descr">Описание</label>
-        <textarea id="descr" name="descr" rows="8" placeholder="Описание" required></textarea>
-        <input id="img" name="img" type="file" placeholder="Фото" required>
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        <label for="{{f.id_for_label}}">{{f.label}}</label>{{f}}
+        <div class="form-error">{{f.errors}}</div>
+        {% endfor %}
         <input class="btn-form" type="submit" value="Отправить">
     </form>
-
 </div>
 
 {% endblock %}
