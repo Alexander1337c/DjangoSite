@@ -1,0 +1,21 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+<div class="user">
+    <h2 class="user-title">Регистрация пользоваьтеля</h2>
+    <div class="user-container">
+        <form class="user-login" action="" method="POST">
+            {% csrf_token %}
+            {% for f in form %}
+            <label for="{{f.id_for_label}}">{{f.label}}</label>{{f}}
+            <div class="form-error">{{f.errors}}</div>
+            {% endfor %}
+            <input class="btn-form" type="submit" value="Зарегистрироваться">
+        </form>
+        <div class="user-footer">
+            <p class="login-register">Уже есть аккаунт?</p>
+            <a href="{% url 'user_login' %}">Авторизоваться</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

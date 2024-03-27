@@ -17,8 +17,17 @@ class AddGameForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'placeholder': 'Название игры'}),
             'slug': forms.TextInput(attrs={'placeholder': 'URL для игры "mortal-combat" '})
         }
-    def clean_slug(self):
-        slug = self.cleaned_data['slug']
-        if slug:
-            raise ValidationError('Такой слаг уже существует')  
-        return slug
+    # def clean_slug(self):
+    #     slug = self.cleaned_data['slug']
+    #     if slug:
+    #         raise ValidationError('Такой слаг уже существует')
+    #     return slug
+
+
+class AddComments(forms.ModelForm):
+
+    class Meta:
+        model = Comments
+        fields = ('text',)
+        widgets = {'text': forms.Textarea(
+            attrs={'class': 'comment-field', 'placeholder': 'Введите текст комментария'})}

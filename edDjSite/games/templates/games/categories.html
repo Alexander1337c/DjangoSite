@@ -1,5 +1,7 @@
-{% for cat in ctg %}
-<a class="cat-button {% if cat.id == cat_selected %}active {% endif %}" href="{{ cat.get_absolute_url }}">
-    {{cat.name}}
-</a>
-{% endfor %}
+<div class="cat-games">
+    {% for cat in ctg %}
+    <a class="cat-button {% if cat.id == cat_selected %}active {% endif %}" href="{{ cat.get_absolute_url }}">
+        {{cat.name}}
+    </a>
+    {% endfor %}
+</div>

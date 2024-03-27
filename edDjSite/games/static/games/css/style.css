@@ -63,6 +63,7 @@ a {
   font-size: 2rem;
 }
 
+
 .main-menu.register a {
   color: green;
   font-size: 1.6rem;
@@ -89,7 +90,6 @@ a {
   flex-direction: column;
   border-radius: 11px;
   overflow: hidden;
-  cursor: pointer;
   transition: all 0.5s;
 }
 
@@ -103,6 +103,7 @@ a {
 
 .game-body {
   padding: 1.2rem 1rem;
+  position: relative;
 }
 
 .game-body span {
@@ -210,6 +211,7 @@ a {
 }
 
 .game-item {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -217,6 +219,10 @@ a {
   gap: 3rem;
   background-color: color(a98-rgb 0.92 1 1);
   border-radius: 15px;
+}
+
+.game-item .game-img{
+  max-width: 50%;
 }
 
 .game-body-item {
@@ -263,8 +269,262 @@ a {
   color: white;
 }
 
-.errorlist{
+.errorlist {
   background-color: rgb(255, 122, 122);
   padding: 1rem;
+  color: white;
+}
+
+.user {
+  margin-top: 3rem;
+}
+
+.user-title {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.1rem;
+  margin: 1rem auto;
+  max-width: 80rem;
+  padding: 6rem 3rem;
+  background-color: rgb(203, 255, 238);
+}
+
+.user-login {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12rem;
+}
+
+.user-login label {
+  font-size: 1.4rem;
+  margin: 1rem 0.3rem 0.3rem;
+}
+
+.user-login input {
+  padding: 1rem 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.user-footer {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.4rem;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+.user-footer a {
+  font-weight: bold;
+  color: rgb(97, 61, 255);
+}
+
+.dropdown-menu {
+  color: #3d3d3d;
+  font-size: 1.8rem;
+  border: 1px solid black;
+  padding: 0.4rem 1.2rem;
+  background-color: inherit;
+}
+
+.main-menu.register {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.user-name {
+  font-size: 1.6rem;
+}
+
+.game-user {
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.game-user a {
+  padding: 0.5rem 1rem;
+  transition: all 0.3s;
+}
+
+.game-user a:hover {
+  background-color: #b3b3b3;
+  color: white;
+  font-weight: 600;
+}
+
+.user-published {
+  position: absolute;
+  bottom: 3.2rem;
+  right: 3.2rem;
+  font-size: 1.4rem;
+}
+
+.container-game {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-game h2 {
+  font-size: 2.4rem;
+}
+
+.wrap-game {
+  margin-top: 1.5rem;
+}
+
+
+.game-href {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+}
+
+.game-href a {
+  color: #6b6b6b;
+}
+
+.btn-like {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  top: -4rem;
+  right: 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.heart {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.game-body .count {
+  font-size: 1.2rem;
+  color: white;
+}
+
+.btn-like.item {
+  top: 1rem;
+}
+
+.count {
+  font-size: 1.2rem;
+  color: white;
+}
+
+#authorized {
+  display: none;
+  position: absolute;
+  top: 3rem;
+  background: #555;
+  right: 0rem;
+  color: white;
+  padding: 1rem;
+}
+
+.btn-like:hover #authorized {
+  display: block;
+}
+
+.popular-games {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorite-games {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorite-title {
+  font-size: 2.6rem;
+}
+
+.comment-field {
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.comments {
+  margin-top: 3rem;
+}
+
+.comments h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.comments h2 span {
+  font-weight: 300;
+}
+
+.comments form {
+  margin-bottom: 2rem;
+}
+
+.comments-user {
+  font-size: 1.4rem;
+  padding: 2rem 3rem;
+}
+
+.comment-body {
+  border: 0.5px solid #cacaca;
+  border-radius: 6px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.comment-author {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.comment-author a{
+  display: flex;
+  padding: 1rem;
+  border: 1px solid #b9b9b9;
+  border-radius: 50%;
+  color: red;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+.comment-create {
+  font-weight: 1.2rem;
+}
+
+.comment-text {
+  margin-top: 1rem;
+  line-height: 1.8rem;
+}
+
+.comment{
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+.count-comment, .btn-like .count-comment{
+  font-size: 1.2rem;
   color: white;
 }

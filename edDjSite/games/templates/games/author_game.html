@@ -1,0 +1,14 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+<div class="container-game">
+    <h2>Список игр опубликованных {{user.username}}</h2>
+    <div class="wrap-game">
+        {% for g in games %}
+        <ul class="list-games">
+            <li class="game-href"><a href="{{g.get_absolute_url}}">{{g.title}}</a></li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

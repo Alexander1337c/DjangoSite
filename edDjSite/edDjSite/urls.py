@@ -23,6 +23,8 @@ from edDjSite import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('games.urls')),
+    path('user/', include('users.urls')),
+
 ]
 
 if settings.DEBUG:

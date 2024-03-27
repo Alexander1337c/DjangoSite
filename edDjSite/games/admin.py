@@ -14,5 +14,10 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'game', 'author', 'text', 'status')
+
+
 admin.site.register(Games, GamesAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Comments, CommentsAdmin)

@@ -2,10 +2,9 @@
 {% load games_tags %}
 
 {% block content %}
-<div class="cat-games">
-    {% show_categories cat_selected %}
-</div>
+{% include 'games/categories.html' %}
+
 <div class="section-games">
-    {% show_games cat_selected %}
+    {% show_games cat_selected user=request.user%}
 </div>
 {% endblock %}
