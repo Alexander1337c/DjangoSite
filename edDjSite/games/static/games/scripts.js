@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const url_remove = document.querySelector('a.remove')
     const url_like = document.querySelector('a.like')
 
+    const search_field = document.querySelector('.search-field')
+
 
     const like_list = document.querySelectorAll('a.like')
     const remove_list = document.querySelectorAll('a.remove')
@@ -16,6 +18,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         return options
     }
 
+    const optionsGET = () => {
+        let options = {
+            method: 'GET',
+            headers: { 'X-CSRFToken': csrftoken },
+            mode: 'same-origin'
+        }
+        return options
+    }
 
     // Удаление комментария 
     remove_list.forEach(item => {
@@ -77,5 +87,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         })
     })
+    search_field.addEventListener('input', function (e) {
+        let search_list = document.querySelector('.result');
+        let result_block = document.querySelector('.search-block');
+        let result = document.querySelectorAll('.result-item');
+        let search_response = document.querySelector('.search-response')
+        if (search_response) {
+            search_response.remove()
+        }
+        if (result && e.target.value != '') {
+            result_block.classList.add('active');
+            result.forEach(elem => elem.remove())
+        }
+        else {
+            result_block.classList.remove('active')
+        }
+        let options = optionsPOST()
 
+        let formData = new FormData();
+        formData.append('q', e.target.value);
+        options['body'] = formData;
+        if (e.target.value.length >= 2) {
+            fetch(`${search_field.dataset.url}`, options).then(response => response.text())
+                .then(html => {
+                    if (Boolean(html)) {
+                        search_list.insertAdjacentHTML('beforeend', html)
+                    }
+                    else {
+                        search_list.insertAdjacentHTML('beforeend', '<p class="search-response dynamic">Ничего не найдено</p>')
+                    }
+                })
+        }
+
+    })
 })

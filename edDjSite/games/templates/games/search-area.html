@@ -1,0 +1,9 @@
+{% for game in search_games %}
+<div class="result-item">
+    <a href="{{ game.get_absolute_url }}">
+        <img class="result-img" src="{{game.photo.url}}" alt="">
+        <p class="result-name">{{game.title}}</p>
+    </a>
+    
+</div>
+{% endfor %}

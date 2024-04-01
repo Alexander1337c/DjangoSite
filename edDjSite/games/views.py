@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.views.generic.edit import FormMixin
-from django.http import HttpResponseNotFound, HttpResponse, JsonResponse
+from django.http import HttpRequest, HttpResponseNotFound, HttpResponse, JsonResponse
 from .utils import *
 from .models import *
 from .forms import *
@@ -20,7 +20,11 @@ class GamesHome(DataMixin, ListView):
     context_object_name = 'games'
 
     def get_queryset(self) -> QuerySet[Any]:
-        return Games.objects.filter(is_published=True).annotate(total=Count('liked_by')).order_by('-total')[:3]
+        terms = self.request.GET.get('q')
+        if terms:
+            return q_search(terms)
+        else:
+            return Games.objects.filter(is_published=True).annotate(total=Count('liked_by')).order_by('-total')[:3]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -174,6 +178,15 @@ def remove_comment(request):
         except Comments.DoesNotExist:
             pass
         return JsonResponse({'status': 'error'})
+
+
+def dynamic_search(request):
+    terms = request.POST.get('q')
+    if terms:
+        search = q_search(terms)
+    else:
+        search = []
+    return render(request, 'games/search-area.html', {'search_games': search})
 
 
 def pageNotFound(request, exception):

@@ -221,7 +221,7 @@ a {
   border-radius: 15px;
 }
 
-.game-item .game-img{
+.game-item .game-img {
   max-width: 50%;
 }
 
@@ -499,7 +499,8 @@ a {
   justify-content: space-between;
   margin-bottom: 0.5rem;
 }
-.comment-author a{
+
+.comment-author a {
   display: flex;
   padding: 1rem;
   border: 1px solid #b9b9b9;
@@ -519,12 +520,96 @@ a {
   line-height: 1.8rem;
 }
 
-.comment{
+.comment {
   width: 2rem;
   height: 2rem;
   color: white;
 }
-.count-comment, .btn-like .count-comment{
+
+.count-comment,
+.btn-like .count-comment {
   font-size: 1.2rem;
   color: white;
+}
+
+.search-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.search-area form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.search-field {
+  padding: 1rem 2rem;
+  border: none;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.search {
+  width: 3rem;
+  height: 3rem;
+  color: #b3b3b3;
+  background: none;
+  border: none;
+}
+
+.search-block {
+  position: absolute;
+  top: 5rem;
+  background: #e2ffff;
+  border-radius: 2rem;
+  width: 40rem;
+  z-index: 1;
+  display: none;
+}
+
+.search-block.active {
+  display: block;
+}
+
+.result-item {
+  margin: 2rem;
+}
+
+
+.result-item a {
+  display: flex;
+  height: 4rem;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-img {
+  height: 100%;
+}
+
+.result-name {
+  color: #555;
+}
+
+.search-response{
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.home {}
+
+.home:hover {
+  border-color: #555;
+  color: #555;
+}
+.dynamic{
+  text-align: center;
+  font-size: 1.8rem;
+  color: #555;
 }

@@ -39,7 +39,17 @@
         </nav>
         {% endblock mainmenu %}
     </header>
-
+    <div class="search-area">
+        <form action="{% url 'search' %}" method="get">
+            <input class="search-field" type="search" name="q" placeholder="Поиск" data-url="{% url 'd_search' %}" autocomplete="off">
+            <button class="search" type="submit"><ion-icon class="search" name="search-outline"></ion-icon></button>
+        </form>
+        <div class="search-block">
+            <div class="result">
+                {% include 'games/search-area.html' %}
+            </div>
+        </div>
+    </div>
     <div class="container">
         {% block content %}{% endblock %}
     </div>
