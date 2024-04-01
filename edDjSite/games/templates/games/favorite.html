@@ -1,0 +1,10 @@
+{% extends 'games/base.html' %}
+
+{% block content %}
+<div class="favorite-games">
+    <h2 class="favorite-title">Избранное</h2>
+    <div class="section-games">
+        {% include 'games/show_games.html' %}
+    </div>
+</div>
+{% endblock %}

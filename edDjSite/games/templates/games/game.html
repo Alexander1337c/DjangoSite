@@ -1,17 +1,72 @@
 {% extends 'games/base.html' %}
+{% load games_tags %}
 
 {% block content %}
-{% for g in game %}
-<h2 class="game-title">{{g.title}}</h2>
+{% include 'games/categories.html' %}
+
+<h2 class="game-title">{{game.title}}</h2>
 <div class="game-item">
     <div class="game-img">
-        <img src="{{g.photo.url}}" alt="{{g.title}}">
+        <span class="category">{{game.cat}}</span>
+        <img src="{{game.photo.url}}" alt="{{game.title}}">
+        <div class="btn-like item">
+            <ion-icon class="comment" name="chatbox-outline"></ion-icon>
+            <span class="count-comment">{{game.comments_games.all.count}}</span>
+            {% if user.is_authenticated %}
+            <a class="like" href="#" data-id="{{ game.id }}"
+                data-action="{% if request.user in game.liked_by.all %}un{% endif %}like"
+                data-url="{% url 'like_game' %}">
+                <ion-icon class="heart"
+                    name="heart{% if request.user not in game.liked_by.all %}-outline{% endif %}"></ion-icon>
+            </a>
+            {% else %}
+            <p class="like">
+                <ion-icon class="heart"
+                    name="heart{% if request.user not in game.liked_by.all %}-outline{% endif %}"></ion-icon>
+                <span id="authorized">Оценивать могут только зарегестрированные пользователи</span>
+            </p>
+
+            {% endif %}
+            <span class="count">{{game.liked_by.count}}</span>
+        </div>
     </div>
     <div class="game-body-item">
-        <p class="game-date">{{g.time_create}}</p>
-        <p class="game-descr-item">{{g.descr}}</p>
+        <p class="game-date">{{game.time_create|date:'d-m-Y H:i:s'}}</p>
+        <p class="game-descr-item">{{game.descr}}</p>
+    </div>
+    <p class="user-published"> <a class="user-published"
+            href="{% url 'author_game' author=game.user.username%}">{{game.user}}</a></p>
+</div>
+<div class="comments">
+
+    <h2>{% if game.comments_games.exists %}
+        Комментарии <span class="count_comment">{{game.comments_games.all.count}}</span>
+        {% else %}Комментариев нет{% endif%}
+    </h2>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-error">{{ form.non_field_errors }}</div>
+        {% for f in form %}
+        {{f}}
+        <div class="form-error">{{f.errors}}</div>
+        {% endfor %}
+        <input type="submit" class="btn-form" value="Отправить">
+    </form>
+
+    <div class="comments-user">
+        {% for comment in game.comments_games.all|dictsortreversed:"time_create" %}
+        <div class="comment-body" data-id="{{comment.id}}">
+            <p class="comment-author">{% if request.user == comment.author %}
+                Вы
+                <a class="remove" href="#" data-id="{{comment.id}}" data-url="{% url 'remove_comment' %}"><ion-icon
+                        name="close"></ion-icon></a>
+                {% else %}{{comment.author}}{% endif %}
+            </p>
+            <span class="comment-create">{{comment.time_create|date:'d-m-Y H:i:s'}}</span>
+            <p class="comment-text">{{comment.text}}</p>
+        </div>
+        {% endfor %}
     </div>
 </div>
-
-{% endfor %}
 {% endblock %}

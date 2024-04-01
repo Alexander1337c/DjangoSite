@@ -1,5 +1,5 @@
 {% for game in games %}
-<div class="game">
+<div class="game" data-id="{{game.id}}">
     <div class="game-img">
         {% if game.photo %}
         <img src="{{game.photo.url}}" alt="{{game.title}}">
@@ -8,8 +8,29 @@
     <div class="game-body">
         <span>Опубликовано: {{game.time_create|date:'d-m-Y H:i:s'}}</span>
         <span>{{game.cat}}</span>
+        <p class="game-user">Автор: <a href="{% url 'author_game' author=game.user.username%}">{{game.user}}</a></p>
         <p class="game-name">{{game.title}}</p>
         <p class="game-descr">{{game.descr | truncatechars:250}}</p>
+        <div class="btn-like">
+            <ion-icon class="comment" name="chatbox-outline"></ion-icon>
+            <span class="count-comment">{{game.comments_games.all.count}}</span>
+            {% if user.is_authenticated %}
+            <a class="like" href="#" data-id="{{ game.id }}"
+                data-action="{% if user in game.liked_by.all %}un{% endif %}like" data-url="{% url 'like_game' %}">
+                <ion-icon class="heart"
+                    name="heart{% if user not in game.liked_by.all %}-outline{% endif %}"></ion-icon>
+            </a>
+            {% else %}
+            <p class="like">
+                <ion-icon class="heart"
+                    name="heart{% if user not in game.liked_by.all %}-outline{% endif %}"></ion-icon>
+                <span id="authorized">Оценивать могут только зарегестрированные пользователи</span>
+            </p>
+
+            {% endif %}
+            <span class="count">{{game.liked_by.count}}</span>
+        </div>
+
     </div>
     <a class="btn-form game" href="{{ game.get_absolute_url }}">Смотреть</a>
 </div>

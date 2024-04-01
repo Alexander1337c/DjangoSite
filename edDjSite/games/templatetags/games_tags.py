@@ -22,11 +22,11 @@ def show_categories(cat_selected=1):
 
 
 @register.inclusion_tag('games/show_games.html')
-def show_games(cat_games=1):
+def show_games(cat_games=1, user=None):
     if cat_games and cat_games == 1:
-        games = Games.objects.all()
+        games = Games.objects.filter(is_published=True)
     elif not Games.objects.filter(cat_id=cat_games):
         raise Http404()
     else:
-        games = Games.objects.filter(cat_id=cat_games)
-    return {"games": games}
+        games = Games.objects.filter(is_published=True, cat_id=cat_games )
+    return {"games": games, "user": user}

@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="{% static 'games/css/style.css' %}" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="{% static 'games/imgs/icons8-apple-arcade.svg' %}">
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"
+        crossorigin="anonymous"></script>
     <title>{{ title }}</title>
 </head>
 
@@ -16,6 +19,8 @@
             <a href="{% url 'home' %}" class="logo"><img src="../../static/games/imgs/icons8-apple-arcade.svg"
                     alt="Логотип"></a>
             <ul class="main-menu item">
+                <i class="fa-solid fa-user-chef"></i>
+
                 {% for item in menu %}
                 {% url item.url_name as url %}
                 <li class="item-menu"><a class="item {% if url in request.path %}active {% endif %}"
@@ -23,16 +28,33 @@
                 {% endfor %}
             </ul>
             <ul class="main-menu register">
-                <li class="item-menu login"><a href="#">Вход</a></li>
+
+                {% if request.user.is_authenticated %}
+                <li class="user-name">{{user.username}}</li>
+                <li class="item-menu login"><a href="{% url 'logout' %}">Выход</a></li>
+                {% else %}
+                <li class="item-menu login"><a href="{% url 'user_login' %}">Вход</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% endblock mainmenu %}
     </header>
-
+    <div class="search-area">
+        <form action="{% url 'search' %}" method="get">
+            <input class="search-field" type="search" name="q" placeholder="Поиск" data-url="{% url 'd_search' %}" autocomplete="off">
+            <button class="search" type="submit"><ion-icon class="search" name="search-outline"></ion-icon></button>
+        </form>
+        <div class="search-block">
+            <div class="result">
+                {% include 'games/search-area.html' %}
+            </div>
+        </div>
+    </div>
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="{% static 'games/scripts.js' %}"></script>
 </body>
 
 </html>

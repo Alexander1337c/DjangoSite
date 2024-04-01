@@ -2,9 +2,22 @@
 
 {% block content %}
 
-<h1>INDEX</h1>
-{% for item in items %}
-<p>{{item.title}}</p>
-<p>{{item.descr}}</p>
-{% endfor %}
+<div class="popular-games">
+    {% if request.GET.q %}
+        <h2>Результаты поиска</h2>
+        {% if games %}
+        <div class="section-games">
+            {% include 'games/show_games.html' %}
+        </div>
+        {% else %}
+            <p class="search-response">По вашему запросу <b>{{request.GET.q}}</b> ничего не найдено</p>
+            <a class="btn-form home" href="{% url 'home' %}">На главную</a>
+        {% endif %}
+    {% else %}
+        <h2>Популярные игры</h2>
+        <div class="section-games">
+            {% include 'games/show_games.html' %}
+        </div>
+    </div>
+    {% endif %}    
 {% endblock %}
