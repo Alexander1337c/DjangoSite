@@ -24,7 +24,8 @@ class GamesHome(DataMixin, ListView):
         if terms:
             return q_search(terms)
         else:
-            return Games.objects.filter(is_published=True).annotate(total=Count('liked_by')).order_by('-total')[:3]
+            games = Games.objects.filter(is_published=True).annotate(total=Count('liked_by')).order_by('-total')[:3]
+            return games.select_related('cat', 'user').prefetch_related('liked_by', 'comments_games')
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -71,7 +72,7 @@ class FavoriteList(LoginRequiredMixin, DataMixin, ListView):
 
     def get_queryset(self) -> QuerySet[Any]:
         favorite = Games.objects.filter(
-            liked_by=self.request.user.id, is_published=True)
+            liked_by=self.request.user.id, is_published=True).select_related('cat', 'user').prefetch_related('liked_by', 'comments_games')
         return favorite
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
@@ -125,6 +126,7 @@ class ShowGame(DataMixin, FormMixin, DetailView):
     slug_url_kwarg = 'game_slug'
     context_object_name = 'game'
     form_class = AddComments
+    queryset = Games.objects.select_related().select_related('cat', 'user').prefetch_related('liked_by', 'comments_games')
 
     def get_success_url(self) -> str:
         return reverse_lazy('get_game', kwargs={'game_slug': self.get_object().slug})

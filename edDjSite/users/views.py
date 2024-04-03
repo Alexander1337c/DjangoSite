@@ -12,6 +12,7 @@ from .forms import *
 class LoginUser(DataMixin, LoginView):
     form_class = LoginForm
     template_name = 'users/login.html'
+    redirect_field_name = 'redirect_to'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -20,6 +21,9 @@ class LoginUser(DataMixin, LoginView):
         return context
     
     def get_success_url(self) -> str:
+        url = self.get_redirect_url()
+        if url:
+            return url
         return reverse_lazy('home')
 
 

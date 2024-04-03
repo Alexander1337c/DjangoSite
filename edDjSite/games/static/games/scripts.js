@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let formData = new FormData();
         formData.append('q', e.target.value);
         options['body'] = formData;
-        if (e.target.value.length >= 2) {
+        if (e.target.value.length > 2) {
             fetch(`${search_field.dataset.url}`, options).then(response => response.text())
                 .then(html => {
                     if (Boolean(html)) {

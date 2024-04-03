@@ -24,12 +24,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('games.urls')),
     path('user/', include('users.urls')),
-
+    
+    
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
+    urlpatterns += [path('__debug__/', include('debug_toolbar.urls')),]
 
 
 handler404 = pageNotFound
