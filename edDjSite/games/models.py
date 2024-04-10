@@ -31,12 +31,6 @@ class Games(models.Model):
         return reverse('get_game', kwargs={'game_slug': self.slug})
 
 
-# class GamesEncoder(DjangoJSONEncoder):
-#     def default(self, o: Any) -> Any:
-#         if isinstance(o, Games):
-#             return {'title': o.title, 'descr': o.descr}
-#         return super().default(o)
-
 
 class Category(models.Model):
     name = models.CharField(max_length=50)

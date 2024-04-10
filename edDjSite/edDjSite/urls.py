@@ -18,15 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from games.views import *
-# from games.API.urls import router
 from edDjSite import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('games.urls')),
     path('user/', include('users.urls')),
-    # path('api/v1/', include(router.urls)),
-    path('api/v1/', include('games.API.urls'))
+    path('api/v1/', include('games.API.urls')),
+    path('api/v1/', include('users.API.urls'))
 
 
 ]
