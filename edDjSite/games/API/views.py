@@ -69,7 +69,6 @@ class CommentsViewSet(mixins.CreateModelMixin,
     
     @action(methods=['GET'], detail=False, url_path='comments-game')
     def comments_game(self, requset, *args, **kwargs):
-        print(self.action)
         queryset = Comments.objects.filter(game=self.request.data.get('game_id'))
         return Response({'comments': CommentsSerializer(queryset, many=True).data})
     

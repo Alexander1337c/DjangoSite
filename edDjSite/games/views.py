@@ -61,6 +61,7 @@ class AuthorGames(DataMixin, ListView):
             title='Игры автора ' + str(context['games'][0].user))
         context = dict(list(context.items()) + list(c_dtm.items()))
         return context
+    
 
 
 class FavoriteList(LoginRequiredMixin, DataMixin, ListView):

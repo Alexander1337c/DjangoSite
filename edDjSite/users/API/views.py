@@ -21,7 +21,10 @@ class RegisterViewSet(mixins.CreateModelMixin,
 
     @action(methods=['POST'], detail=False, permission_classes=[IsAuthenticated], url_name='logout-user', url_path='logout-user')
     def logout_user(self, request):
-        refresh_token = request.data["refresh_token"]
-        token = RefreshToken(refresh_token)
-        token.blacklist()
-        return Response({'status':'205'})
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({'status':'205'})
+        except Exception as e:
+            return Response({"error":"error"})
