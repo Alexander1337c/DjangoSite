@@ -25,11 +25,6 @@ class DataMixin:
 
 def q_search(terms):
 
-    # vector = SearchVector("title", "descr")
-    # query = SearchQuery(terms)
-
-    # print(query)
-    # return Games.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gt=0).order_by("-rank")
     keywords: list = [word for word in terms.split() if len(word) > 2]
     q_objects = Q()
     for token in keywords:
