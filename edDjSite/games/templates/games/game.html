@@ -39,7 +39,7 @@
         Комментариев нет
       {% endif %}
     </h2>
-
+    {% if user.is_authenticated %}
     <form action="" method="POST">
       {% csrf_token %}
       <div class="form-error">{{ form.non_field_errors }}</div>
@@ -49,6 +49,9 @@
       {% endfor %}
       <input type="submit" class="btn-form" value="Отправить" />
     </form>
+    {% else %}
+    <p class="comment-form"> Комментарии могут оставлять только авторизованные пользователи </p>
+    {% endif %}
     <div class="comments-user">
       {% for comment in game.comments_games.all|dictsortreversed:'time_create' %}
         <div class="comment-body" data-id="{{ comment.id }}">
